@@ -1,0 +1,6 @@
+[package]
+name = "rust_invoker"
+version = "0.1.0"
+authors = ["Glyn Normington <gnormington@pivotal.io>"]
+
+[dependencies]
