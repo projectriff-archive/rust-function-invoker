@@ -12,10 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-[workspace]
+[package]
+name = "hello"
+version = "0.1.0"
+authors = ["Glyn Normington <gnormington@pivotal.io>"]
 
-members = [
-    "function_types",
-    "rust_invoker",
-    "samples/hello"
-]
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+function_types = { path = "../../function_types" }
