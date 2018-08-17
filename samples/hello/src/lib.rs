@@ -19,10 +19,9 @@ extern crate function_types;
 use function_types::Basic;
 
 #[no_mangle]
-pub extern "C" fn function(input: &String) -> String {
+pub extern "C" fn function(input: String) -> String {
     format!("{}{}", "hello ", input)
 }
 
 // Ensure function has a suitable type.
-#[allow(dead_code)]
-const FUN: Basic = function;
+const _FUN: Basic = function;

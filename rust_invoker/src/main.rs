@@ -16,9 +16,13 @@
 
 extern crate function_types;
 extern crate libloading as lib;
+extern crate iron;
 
 use std::env;
+use std::io::Read;
 use function_types::Basic;
+use iron::prelude::*;
+use iron::status;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -27,9 +31,21 @@ fn main() {
         std::process::exit(-1);
     }
 
-    let lib = lib::Library::new(&args[1]).unwrap();
-    unsafe {
-        let func: lib::Symbol<Basic> = lib.get(b"function").unwrap();
-        println!("{}", func(&"riff".to_string()));
-    }
+    let library = lib::Library::new(&args[1]).unwrap();
+
+    let handler = move |req: &mut Request| -> IronResult<Response> {
+        // Load function from shared library.
+        let func: lib::Symbol<Basic>;
+        unsafe {
+            func = library.get(b"function").unwrap();
+        }
+
+        // Apply function to request body to produce response body.
+        let mut buf: String = "".to_string();
+        req.body.read_to_string(&mut buf).unwrap();
+        unsafe {
+            Ok(Response::with((status::Ok, func(buf))))
+        }
+    };
+    let _server = Iron::new(handler).http("localhost:8080").unwrap();
 }

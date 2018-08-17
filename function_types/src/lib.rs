@@ -14,7 +14,4 @@
  * limitations under the License.
  */
 
-// Invoked function types must conform to the C ABI since Rust does not have an ABI:
-// https://github.com/rust-lang/rfcs/issues/600
-
-pub type Basic = unsafe extern "C" fn(input: &String) -> String;
+pub type Basic = unsafe extern "C" fn(input: String) -> String;

@@ -22,3 +22,11 @@ and then, from another terminal window:
 $ curl localhost:8080 -d Rust
 hello Rust
 ```
+
+## Supported Function Types
+
+So that function shared libraries do not have to be compiled with the same version of Rust as was used to compile the function invoker and since Rust does not have a [define ABI](https://github.com/rust-lang/rfcs/issues/600), functions must conform to the C ABI: function declared as `extern "C"`; parameter types declared as `#[repr(C)]`.
+
+### Basic
+
+The `Basic` function type 
