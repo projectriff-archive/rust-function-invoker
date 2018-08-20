@@ -23,6 +23,18 @@ $ curl localhost:8080 -d Rust
 hello Rust
 ```
 
+## Building Docker Images
+
+To build the Rust invoker docker image, issue:
+```bash
+$ docker build . -t projectriff/rust-function-invoker:latest
+```
+
+To build the hello sample docker image, issue:
+```bash
+$ docker build . -t projectriff/rust-function-hello:latest -f samples/hello/Dockerfile
+```
+
 ## Supported Function Types
 
 So that function shared libraries do not have to be compiled with the same version of Rust that was used to compile the function invoker and since Rust does not have a [defined ABI](https://github.com/rust-lang/rfcs/issues/600), functions must conform to the C ABI: the function must be declared as `extern "C"`; parameter types must be declared as `#[repr(C)]`.
