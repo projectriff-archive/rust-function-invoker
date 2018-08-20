@@ -25,8 +25,8 @@ hello Rust
 
 ## Supported Function Types
 
-So that function shared libraries do not have to be compiled with the same version of Rust as was used to compile the function invoker and since Rust does not have a [define ABI](https://github.com/rust-lang/rfcs/issues/600), functions must conform to the C ABI: function declared as `extern "C"`; parameter types declared as `#[repr(C)]`.
+So that function shared libraries do not have to be compiled with the same version of Rust that was used to compile the function invoker and since Rust does not have a [defined ABI](https://github.com/rust-lang/rfcs/issues/600), functions must conform to the C ABI: the function must be declared as `extern "C"`; parameter types must be declared as `#[repr(C)]`.
 
 ### Basic
 
-The `Basic` function type 
+The `Basic` function type takes a string containing the request body and returns a string which is used as the response body.
