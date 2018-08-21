@@ -27,7 +27,7 @@ use iron::status;
 fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() != 2 {
-        println!("Expected a single argument of the path to the function library");
+        println!("Expected a single argument of the path to the function library: {:?}", args);
         std::process::exit(-1);
     }
 
